@@ -1,5 +1,6 @@
 import { products } from "@/data/mockData";
 import ProductCard from "./ProductCard";
+import { Link } from "react-router-dom";
 
 const Products = () => {
     return (
@@ -14,10 +15,13 @@ const Products = () => {
                     ))}
                 </div>
             </div>
-            <div className="flex items-center justify-center pt-5">
-                <button className="bg-brand text-white text-center p-4">
-                    View All
-                </button>
+
+            <div className="flex items-center justify-center">
+                <Link to="/products">
+                    <button className="bg-brand  text-white px-6 py-3 rounded-lg hover:bg-brand-dark transition">
+                        View All Products
+                    </button>
+                </Link>
             </div>
         </section>
     );

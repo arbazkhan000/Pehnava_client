@@ -320,3 +320,26 @@ export const products = [
     },
 ];
 
+export const featureProducts = [
+    {
+        id: 1,
+        title: "Dresses",
+        image: "https://hivadostore.com/cdn/shop/collections/50b56cf0be6864685d8d7489d83d7590.jpg?v=1751003533&width=750",
+    },
+    {
+        id: 2,
+        title: "Co-ord sets",
+        image: "https://hivadostore.com/cdn/shop/collections/Screenshot_2025-03-08_042909_c0a4f3c4-a7f2-4a22-b420-a1dec57308ca.png?v=1751003512&width=750",
+    },
+    {
+        id: 3,
+        title: "Kurta sets",
+        image: "https://hivadostore.com/cdn/shop/collections/Screenshot_2025-01-12_074701.png?v=1751003562&width=750",
+    },
+    {
+        id: 4,
+        title: "Kurta sets",
+        image: "https://hivadostore.com/cdn/shop/collections/Screenshot_2025-01-12_074701.png?v=1751003562&width=750",
+    },
+];
+

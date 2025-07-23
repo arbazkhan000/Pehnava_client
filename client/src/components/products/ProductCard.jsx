@@ -42,16 +42,16 @@ const ProductCard = ({ product }) => {
                 </h3>
 
                 <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg text-brand">
-                        Rs.{product.newPrice}
-                    </span>
+                    <p className="text-lg font-semibold text-brand">
+                        ₹{product.newPrice}
+                    </p>
                     {product.oldPrice && (
-                        <span className="text-gray-500 line-through text-sm">
-                            Rs.{product.oldPrice}
-                        </span>
+                        <p className="text-gray-500 line-through">
+                            ₹{product.oldPrice}
+                        </p>
                     )}
                     {product.discount && (
-                        <span className="inline-block text-xs sm:text-sm font-medium bg-brand text-white px-2 py-0.5 rounded">
+                        <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded">
                             {product.discount}
                         </span>
                     )}
