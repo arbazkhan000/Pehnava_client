@@ -1,19 +1,15 @@
-import CategoriesSection from "@/components/CategoriesSection";
+import Categories from "@/components/Categories";
+import CategoryShowcase from "@/components/CategoryShowcase";
 import FeaturesBar from "@/components/FeaturesBar";
 import HeroSection from "@/components/HeroSection";
-import FeatureProducts from "@/components/products/FeatureProducts";
-import Products from "@/components/products/Products";
-import { ReelGallery } from "@/components/ReelGallery";
 
 const Index = () => {
     return (
-        <div className="min-h-screen flex flex-col bg-brand-background">
+        <div className="overflow-hidden">
             <HeroSection />
-            <FeatureProducts />
-            <CategoriesSection />
-            <Products />
+            <Categories />
+            <CategoryShowcase />
             <FeaturesBar />
-            <ReelGallery />
         </div>
     );
 };

@@ -77,7 +77,7 @@ const HeroSection = () => {
                             key={index}
                             onClick={() => plugin.current.scrollTo(index)}
                             aria-label={`Go to slide ${index + 1}`}
-                            className="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition"
+                            className="w-2 h-2 rounded-full bg-white/50 hover:bg-background transition"
                         />
                     ))}
                 </div>

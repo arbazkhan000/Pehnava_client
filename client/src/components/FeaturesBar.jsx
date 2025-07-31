@@ -58,7 +58,7 @@ const features = [
 
 const FeaturesBar = () => {
     return (
-        <div className="w-full bg-brand_background py-6 sm:py-8 border-t border-b border-gray-100">
+        <div className="w-full  py-6 sm:py-8 border-t  border-b border-foreground">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6">
                     {features.map((feature, idx) => (
