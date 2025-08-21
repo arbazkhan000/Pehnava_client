@@ -1,37 +1,82 @@
-// pages/CategoryProducts.tsx
+import LoadingSpinner from "@/components/LoadingSpinner";
+import {
+    Pagination,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProduct } from "../context/ProductContext";
 import ProductCard from "../components/products/ProductCard";
+import { useProduct } from "../context/ProductContext";
 
 const CategoryProducts = () => {
-    const { slug } = useParams(); // URL se slug mil raha hai
-    const { categories, products } = useProduct();
+    const { slug } = useParams();
+    const { categories, products, getProductsByCategory, loading } =
+        useProduct();
 
-    if (!categories || !products) return <div>Loading...</div>;
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
-    // Find category by slug
-    const category = categories.find((cat) => cat.slug === slug);
+    useEffect(() => {
+        if (slug) {
+            (async () => {
+                const data = await getProductsByCategory(slug, page);
+                if (data?.totalPages) setTotalPages(data.totalPages);
+            })();
+        }
+    }, [slug, page, getProductsByCategory]);
 
-    if (!category) return <div>Category not found</div>;
-
-    // Filter products of this category
-    const filteredProducts = products.filter(
-        (product) => product.category === category.name
+    if (loading)
+        return (
+            <div className="py-8">
+                <LoadingSpinner size={40} /> 
+            </div>
+        );
+    if (!categories) return (
+        <div className="py-8">
+            <LoadingSpinner size={40} />
+        </div>
     );
+
+    const category = categories.find((cat) => cat.slug === slug);
+    if (!category) return <div>Category not found</div>;
 
     return (
         <section className="p-4">
             <h1 className="text-2xl font-bold mb-6">{category.name}</h1>
 
-            {filteredProducts.length === 0 && (
+            {products.length === 0 ? (
                 <p>No products in this category.</p>
-            )}
+            ) : (
+                <>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                    </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
+                    {/* Pagination Controls */}
+                    <div className="flex justify-center mt-6 space-x-4">
+                        <Pagination>
+                            <PaginationPrevious
+                                disabled={page === 1}
+                                onClick={() =>
+                                    setPage((p) => Math.max(p - 1, 1))
+                                }
+                            />
+                            <div className="flex items-center px-4 select-none">
+                                Page {page} of {totalPages}
+                            </div>
+                            <PaginationNext
+                                disabled={page === totalPages}
+                                onClick={() =>
+                                    setPage((p) => Math.min(p + 1, totalPages))
+                                }
+                            />
+                        </Pagination>
+                    </div>
+                </>
+            )}
         </section>
     );
 };
